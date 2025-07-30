@@ -14,7 +14,7 @@ machine_type = "e2-small"
 zone = "us-east1-b"
 
 #sql instance
-sql_instance_name = "hamza_postgres_17-dev"
+sql_instance_name = "hamzapostgres17-dev"
 db_type = "db-f1-micro"
 db_name = ["customer_db","payments_db"]
 db_username = "adminuser"

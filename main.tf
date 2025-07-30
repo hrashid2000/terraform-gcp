@@ -42,8 +42,9 @@ resource "google_sql_database_instance" "instance" {
   database_version = var.database_version
   settings {
     tier = var.db_type
+    edition  = "ENTERPRISE"
   }
-  deletion_protection  = true
+  deletion_protection  = false
 }
 
 resource "google_sql_database" "main_database" {
