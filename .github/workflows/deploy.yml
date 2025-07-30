@@ -37,6 +37,8 @@ jobs:
         run: terraform plan -lock=false -var-file=envs/dev.tfvars
       - name: Terraform Apply (Dev)
         run: terraform apply -lock=false -var-file=envs/dev.tfvars -auto-approve
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
   deploy-qa:
     runs-on: ubuntu-latest
     steps:
