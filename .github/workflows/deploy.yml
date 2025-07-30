@@ -1,7 +1,5 @@
 name: Multi-Deploy
 
-variables:
-- env: [dev,qa,stage,prod]
 on:
   push:
     branches:
