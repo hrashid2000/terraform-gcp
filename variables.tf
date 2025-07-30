@@ -1,30 +1,30 @@
 variable "project_id" {
-  type = string
+  type    = string
   default = "seventh-dryad-467217-n4"
 }
 
 variable "region" {
-  type = string
+  type    = string
   default = "us-east1"
 }
 
 variable "backend_bucket" {
-  type = string
+  type    = string
   default = "terraform-tfstate-hamza"
 }
 
 variable "backend_bucket_prefix" {
-  type = string
+  type    = string
   default = "terraform/state"
 }
 
 variable "vpc_name" {
-  type = string
+  type    = string
   default = "default"
 }
 
 variable "subnet_name" {
-  type = string
+  type    = string
   default = "default"
 }
 
@@ -33,7 +33,7 @@ variable "bucket_name" {
 }
 
 variable "location" {
-  type = string
+  type    = string
   default = "US"
 }
 
@@ -42,17 +42,17 @@ variable "vm_name" {
 }
 
 variable "machine_type" {
- type = string 
+  type = string
 }
 
 variable "zone" {
- type = string 
- default = "us-east1-c"
+  type    = string
+  default = "us-east1-c"
 }
 
 variable "disk_size" {
- type = number
- default = 20
+  type    = number
+  default = 20
 }
 
 variable "sql_instance_name" {
@@ -60,7 +60,7 @@ variable "sql_instance_name" {
 }
 
 variable "database_version" {
-  type = string
+  type    = string
   default = "POSTGRES_17"
 }
 
@@ -70,7 +70,7 @@ variable "db_type" {
 
 variable "db_name" {
   description = "multiple db names"
-  type = list(string)
+  type        = list(string)
 }
 
 
@@ -79,9 +79,9 @@ variable "db_username" {
 }
 
 variable "secret_name" {
-    type = string 
+  type = string
 }
 
 variable "fw_rule" {
-    type = string 
+  type = string
 }

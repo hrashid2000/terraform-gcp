@@ -1,18 +1,18 @@
 data "google_compute_network" "existing_vpc" {
-  name    = var.vpc_name 
-  project = var.project_id   
+  name    = var.vpc_name
+  project = var.project_id
 }
 
 data "google_compute_subnetwork" "existing_subnet" {
   project = var.project_id
-  region  = var.region        
+  region  = var.region
   name    = var.subnet_name
 }
 
 resource "google_storage_bucket" "static-site" {
-  name     = var.bucket_name
-  location = var.location
-  project  = var.project_id
+  name                     = var.bucket_name
+  location                 = var.location
+  project                  = var.project_id
   public_access_prevention = "enforced"
   versioning {
     enabled = true
@@ -27,7 +27,7 @@ resource "google_compute_instance" "default" {
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-12"
-      size = var.disk_size
+      size  = var.disk_size
     }
   }
 
@@ -41,17 +41,17 @@ resource "google_sql_database_instance" "instance" {
   region           = var.region
   database_version = var.database_version
   settings {
-    tier = var.db_type
-    edition  = "ENTERPRISE"
+    tier    = var.db_type
+    edition = "ENTERPRISE"
   }
-  deletion_protection  = false
+  deletion_protection = false
 }
 
 resource "google_sql_database" "main_database" {
-  for_each = toset(var.db_name)
-  name     = each.key
-  instance = google_sql_database_instance.instance.name
-  depends_on = [ google_sql_database_instance.instance, ]
+  for_each   = toset(var.db_name)
+  name       = each.key
+  instance   = google_sql_database_instance.instance.name
+  depends_on = [google_sql_database_instance.instance, ]
 }
 
 resource "random_password" "password" {
@@ -61,14 +61,14 @@ resource "random_password" "password" {
 }
 
 resource "google_sql_user" "main_user" {
-  name     = var.db_username
-  instance = google_sql_database_instance.instance.name
-  password = random_password.password.result
-  depends_on = [ google_sql_database_instance.instance,random_password.password, ]
+  name       = var.db_username
+  instance   = google_sql_database_instance.instance.name
+  password   = random_password.password.result
+  depends_on = [google_sql_database_instance.instance, random_password.password, ]
 }
 
 resource "google_secret_manager_secret" "my_secret" {
-  project = var.project_id
+  project   = var.project_id
   secret_id = var.secret_name
 
   replication {
@@ -81,9 +81,9 @@ resource "google_secret_manager_secret" "my_secret" {
 }
 
 resource "google_secret_manager_secret_version" "my_secret_version" {
-  secret = google_secret_manager_secret.my_secret.id
+  secret      = google_secret_manager_secret.my_secret.id
   secret_data = random_password.password.result
-   depends_on = [ google_secret_manager_secret.my_secret,random_password.password, ]
+  depends_on  = [google_secret_manager_secret.my_secret, random_password.password, ]
 }
 
 resource "google_compute_firewall" "postgres-rules" {
@@ -93,9 +93,9 @@ resource "google_compute_firewall" "postgres-rules" {
   description = "Creates firewall rule for postgres"
 
   allow {
-    protocol  = "tcp"
-    ports     = ["5432",]
+    protocol = "tcp"
+    ports    = ["5432", ]
   }
-  source_tags = [ "db" ]
+  source_tags = ["db"]
 }
 
