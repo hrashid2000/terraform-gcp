@@ -15,8 +15,8 @@ jobs:
         uses: hashicorp/setup-terraform@v3
       - name: Terraform fmt
         run: terraform fmt -check=true
-      #- name: Terraform validate
-      #  run: terraform validate
+      - name: Terraform validate
+        run: terraform validate
       - name: Authenticate with GCP
         uses: google-github-actions/auth@v2
         with:
