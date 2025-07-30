@@ -63,7 +63,6 @@ variable "database_version" {
   type    = string
   default = "POSTGRES_17"
 }
-
 variable "db_type" {
   type = string
 }
