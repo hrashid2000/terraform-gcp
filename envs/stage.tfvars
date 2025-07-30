@@ -19,4 +19,4 @@ db_type = "db-f1-micro"
 db_name = ["customer_db","payments_db"]
 db_username = "adminuser"
 secret_name = "adminuser"
-fw_rule = "hamza_fw"
+fw_rule = "hamzafw"
