@@ -3,7 +3,7 @@ project_id = "seventh-dryad-467217-n4"
 
 #network 
 vpc_name = "default"
-aubnet_name = "default"
+subnet_name = "default"
 
 #bucket
 bucket_name = "hamza-bucket-prod"
