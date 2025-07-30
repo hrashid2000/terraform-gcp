@@ -34,9 +34,9 @@ jobs:
       - name: Terraform Init
         run: terraform init
       - name: Terraform Plan (Dev)
-        run: terraform plan -var-file=envs/dev.tfvars
+        run: terraform plan -lock=false -var-file=envs/dev.tfvars
       - name: Terraform Apply (Dev)
-        run: terraform apply -var-file=envs/dev.tfvars -auto-approve
+        run: terraform apply -lock=false -var-file=envs/dev.tfvars -auto-approve
   deploy-qa:
     runs-on: ubuntu-latest
     steps:
